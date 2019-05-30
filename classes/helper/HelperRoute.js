@@ -16,19 +16,6 @@ const resolve = async(Controller, request, reply) => {
     benchmarkReset();
     benchmark('start');
 
-    const hostname = request.hostname.split(':')[0];
-
-    if(guardRegisterd(hostname, reply))return `404 / store not registered`;
-
-    benchmark('site register guard');
-
-    //setup ORM
-    const ORM = K8.require('ORM');
-    const HelperDB = K8.require('helper/HelperDB');
-    ORM.setDB(HelperDB.getConnection(hostname));
-
-    benchmark('set DB Connection');
-
     //import controller
     const c = new Controller(request, reply);
 

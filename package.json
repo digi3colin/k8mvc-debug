@@ -1,6 +1,6 @@
 {
   "name": "k8mvc-debug",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Debug information for k8mvc",
   "main": "index.js",
   "scripts": {
