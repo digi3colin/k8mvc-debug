@@ -33,12 +33,21 @@ const resolve = async(Controller, request, reply) => {
       debugText += `<br>${name} : ${K8.classPath[name]}`;
     }
 
+    const matchExtension = (/\.[0-9a-z]+$/i).exec(request.raw.url || '');
+    const extension = matchExtension ? matchExtension[0].replace('.', '') : 'html';
+
     K8.clearCache();
     if(!K8.config.cache.view){
       K8.require('View').clearCache();
     }
 
-    return c.output + '<div style="background-color: #000; color: #AAA; font-family: monospace; font-size: 12px; padding: 1em;">' + debugText + '</div>';
+    if(extension === 'html'){
+      return c.output + '<div style="background-color: #000; color: #AAA; font-family: monospace; font-size: 12px; padding: 1em;">' + debugText + '</div>';
+    }else{
+      return c.output;
+    }
+
+
   }catch(err){
     K8.clearCache();
     if(!K8.config.cache.view){
