@@ -41,6 +41,10 @@ const resolve = async(Controller, request, reply) => {
       K8.require('View').clearCache();
     }
 
+    if(typeof c.output !== 'string'){
+      c.output = JSON.stringify(c.output);
+    }
+
     if(extension === 'html'){
       return c.output + '<div style="background-color: #000; color: #AAA; font-family: monospace; font-size: 12px; padding: 1em;">' + debugText + '</div>';
     }else{
